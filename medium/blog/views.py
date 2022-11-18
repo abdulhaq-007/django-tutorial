@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from .models import Tag, Post
-
+from django.db.models import Q
 # Create your views here.
 
 
 def homePageView(request):
-    random_posts = Post.objects.all().order_by("?")[:4]  # 6 posts
     all_posts = Post.objects.all()
     data = {
-        'random_posts': random_posts,
-        'all_posts': all_posts
+        'all_posts': all_posts,
     }
     return render(request, 'index.html', context=data)
 
@@ -24,10 +22,12 @@ def postDetailView(request, post_slug):
     }
     return render(request, 'post.html', context=data)
 
-def resultPageView(request):
-    q = request.GET.get('query')
-    if len(q) >= 2:
-        query = Tag.objects.filter(name__icontains = q)
-        print(query)
+def searchView(request):
+    query = request.GET.get('search_query')
+    posts = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
 
-    return render(request , 'results.html', {'query' :query})
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'results.html', context)
+
