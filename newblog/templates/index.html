@@ -1,13 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Blog</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+ 
+
+<header>
+    <a href="#" class="logo"><i class="ri-home-heart-fill"></i><span>Logo</span></a>
+
+    <ul class="navbar">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="main">
+        <a href="#"><i class="ri-user-fill"></i>Sing In</a>
+        <a href="#">Register</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </div>
+</header>
+
+
+{% endblock %}
