@@ -15,7 +15,7 @@ class NotesView(ListView):
 class AddNoteView(View):
     """! ta note di alohida korsatadigan view"""
 
-    template_name = 'note/add.html'
+    template_name = 'add.html'
 
     def get(self, request, *args, **kwargs):
         form = AddNoteForm()
@@ -30,3 +30,5 @@ class AddNoteView(View):
             return(request, self.template_name)    
         return render(request, self.template_name, {'form': form})
     
+def statusFilter(request):
+    pass 
