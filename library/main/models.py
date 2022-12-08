@@ -18,9 +18,16 @@ class Author(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100)
+    body = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return str(self.name)
+
+    class Meta:
+        ordering = ["-id"]
+        verbose_name_plural = "Books"    
 
