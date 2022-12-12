@@ -17,3 +17,14 @@ class BookDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["books"] = Book.objects.all()
         return context
+
+class CategoryListView(ListView):
+    model = Book
+    template_name = category
+
+    def get_queryset(self):
+        if self.kwargs.get('slug'):
+            category = self.model.objects.get(slug=self.kwargs.get('slug'))
+            queryset = Book.objects.filter(category=category)
+        return queryset    
+    
