@@ -1,7 +1,8 @@
 from .models import Category
 
+
 def main(request):
     context = {
-        "categories":Category.objects.all()
+        "categories": Category.objects.all()
     }
     return context

@@ -1,30 +1,46 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
-from .models import Book, Category, Author
+from django.views.generic import ListView, DetailView
 
-# class BookTemplateView(TemplateView):
-#     template_name = 'books.html'
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# Create your views here.
+from .models import Book, Category
 
-class BookListView(ListView):
+
+class BookListPageView(ListView):
     model = Book
-    template_name = 'books.html'
+    # template_name = 'index.html'
+
 
 class BookDetailView(DetailView):
-    model = Book  
-    template_name = 'book_detail.html'
+    model = Book
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["books"] = Book.objects.all()
-        return context
 
 class CategoryListView(ListView):
-    model = Book
-    template_name = category
+    model = Category
+    template_name = 'main/category_list.html'
 
     def get_queryset(self):
         if self.kwargs.get('slug'):
             category = self.model.objects.get(slug=self.kwargs.get('slug'))
             queryset = Book.objects.filter(category=category)
-        return queryset    
-    
+        return queryset
+
+# CRUD Views
+
+
+class CreateBookView(CreateView):
+    # template_name = None
+    # template_name_suffix = '_create'
+    model = Book
+    fields = ["title", "category", "poster"]
+    success_url = '/'
+
+
+class UpdateBookView(UpdateView):
+    template_view = 'main/book_update.html'
+    model = Book
+    fields = ['title', 'category', 'poster']
+
+class DeleteBookView(DeleteView):
+    model = Book
+    success_url = '/'

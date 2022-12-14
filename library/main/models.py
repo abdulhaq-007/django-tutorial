@@ -1,33 +1,24 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
+
+
 class Category(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True)
 
     def __str__(self):
         return str(self.name)
 
-class Author(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.SlugField(max_length=100)
-    country = models.CharField( max_length=50)
-
-    def __str__(self):
-        return str(self.name) 
 
 class Book(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
-    body = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=50)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
+    author = models.ForeignKey(
+        User, on_delete=models.PROTECT, blank=True, null=True)
+    views = models.PositiveIntegerField(default=0, blank=True)
+    poster = models.ImageField(upload_to='posters/')
+    description = models.TextField()
 
     def __str__(self):
-        return str(self.name)
-
-    class Meta:
-        ordering = ["-id"]
-        verbose_name_plural = "Books"    
-
+        return str(self.title)
