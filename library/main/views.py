@@ -44,3 +44,5 @@ class UpdateBookView(UpdateView):
 class DeleteBookView(DeleteView):
     model = Book
     success_url = '/'
+
+    
