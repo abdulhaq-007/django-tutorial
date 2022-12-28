@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import User
 
 from ckeditor.fields import RichTextField
 # Create your models here.
@@ -11,10 +11,6 @@ class Category(models.Model):
 
     def __str__(self):
         return str(self.name)
-
-    class Meta:
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'    
 
 
 class Book(models.Model):

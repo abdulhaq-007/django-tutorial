@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'crispy_forms',
-    'ckeditor'
+    'ckeditor',
+    'accounts'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -134,6 +135,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = 'accounts/login'
+# chiqish uchun url
+LOGOUT_URL = 'accounts/logout'
+# kirganidan song ochilishi kerak bolgan url
+LOGIN_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = "accounts.User"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

@@ -32,17 +32,25 @@ class CreateBookView(CreateView):
     # template_name = None
     # template_name_suffix = '_create'
     model = Book
+    fields = ["title", "category", "poster", "description"]
+    success_url = '/'
+
+    def form_valid(self, form):
+        user = self.request.user
+        self.object = form.save(commit=False)
+        self.object.author = user
+        self.object.save()
+        return super().form_valid(form)
+
+
+class UpdateBookView(UpdateView):
+    # book_update_form.html
+    template_name = 'main/book_form.html'
+    model = Book
     fields = ["title", "category", "poster"]
     success_url = '/'
 
 
-class UpdateBookView(UpdateView):
-    template_view = 'main/book_update.html'
-    model = Book
-    fields = ['title', 'category', 'poster']
-
 class DeleteBookView(DeleteView):
     model = Book
     success_url = '/'
-
-    
