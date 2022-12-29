@@ -8,7 +8,7 @@ from django.contrib import messages
 # Create your views here.
 from .models import User
 from .forms import CreateUserForm
-
+from django.contrib.auth.models import Group
 
 def register(request):
     form = CreateUserForm()
@@ -16,10 +16,10 @@ def register(request):
     if request.method == "POST":
   
         form = CreateUserForm(request.POST)
-        for i in form:
-            print(i)
+        
         if form.is_valid():
             user = form.save()
+            
             login(request, user)
             messages.add_message(request, messages.SUCCESS, "Well done !")
             return redirect("/")

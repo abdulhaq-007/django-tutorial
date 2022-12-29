@@ -17,6 +17,9 @@
                 <p>
                     Don't have an account ? <a href="{% url 'accounts:register' %}">Register now</a>
                 </p>
+                <p>
+                    Have you forgotten your password ? <a href="{% url 'accounts:password_reset' %}">Reset a password</a>
+                </p>
             </form>
         </div>
         {% else %}
