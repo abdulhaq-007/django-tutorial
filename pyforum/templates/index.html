@@ -2,4 +2,16 @@
 {% load static %}
 {% block content %}
 
+<section>
+    <div class="container">
+        <div class="grid">
+            {% for topic in topics %}
+                <article>
+                    <h3>{{topic.title}}</h3>
+                    <p>{{topic.body|safe}}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}

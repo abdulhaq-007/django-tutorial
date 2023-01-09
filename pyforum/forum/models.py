@@ -2,7 +2,6 @@ from django.db import models
 from accounts.models import User
 from django.template.defaultfilters import slugify
 # Create your models here.
-
 from django_quill.fields import QuillField
 
 
