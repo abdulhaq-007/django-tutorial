@@ -9,7 +9,7 @@ from .models import Category, Tag, Topic, Comment
 class HomePageView(ListView):
     model = Topic
     paginate_by = 10
-    context_object_name = 'topics'
+    context_object_name = "topics"
     template_name = "index.html"
 
 
