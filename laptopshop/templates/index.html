@@ -80,26 +80,13 @@
         <div class="best-seller">
           <h2 class="best-seller__title">Eng ko‘p sotilganlar</h2>
           <ul class="best-seller-list">
-            <li class="best-seller-list__item">
-              <img class="best-seller-list__img" src="./images/cards-img.png" alt="Best seller computer">
-              <h3 class="best-seller-list__title">HP Noutbuk. Sichqoncha va qo‘shimcha aksessuarlari</h3>
-              <div class="best-seller-list__price">$1200</div>
-            </li>
-            <li class="best-seller-list__item">
-              <img class="best-seller-list__img" src="./images/cards-img.png" alt="Best seller computer">
-              <h3 class="best-seller-list__title">HP Noutbuk. Sichqoncha va qo‘shimcha aksessuarlari</h3>
-              <div class="best-seller-list__price">$1200</div>
-            </li>
-            <li class="best-seller-list__item">
-              <img class="best-seller-list__img" src="./images/cards-img.png" alt="Best seller computer">
-              <h3 class="best-seller-list__title">HP Noutbuk. Sichqoncha va qo‘shimcha aksessuarlari</h3>
-              <div class="best-seller-list__price">$1200</div>
-            </li>
-            <li class="best-seller-list__item">
-              <img class="best-seller-list__img" src="./images/cards-img.png" alt="Best seller computer">
-              <h3 class="best-seller-list__title">HP Noutbuk. Sichqoncha va qo‘shimcha aksessuarlari</h3>
-              <div class="best-seller-list__price">$1200</div>
-            </li>
+            {% for product in popular_products %}
+              <li class="best-seller-list__item">
+                <img class="best-seller-list__img" src="{{product.product_images.all.0.image.url}}" alt="Best seller computer">
+                <h3 class="best-seller-list__title">HP Noutbuk. Sichqoncha va qo‘shimcha aksessuarlari</h3>
+                <div class="best-seller-list__price">{{product.price}}</div>
+              </li>
+            {% endfor %}
           </ul>
 
           <button class="best-seller__btn">Barchasi</button>
