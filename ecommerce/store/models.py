@@ -3,6 +3,12 @@ from ckeditor.fields import RichTextField
 
 
 # Create your models here.
+
+
+class ProductImage(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='product_images/%y/%m/%d/')
+
 class Brand(models.Model):
     title = models.CharField(max_length=255, verbose_name='Brend')
     slug = models.SlugField('*', unique=True)
@@ -48,5 +54,15 @@ class Product(models.Model):
     rating_count = models.IntegerField(default=0)
     poster = models.ImageField(upload_to='posters/%y/%m/%d/')
 
+    def __str__(self):
+        return f"{self.title}"
+
+class Banner(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    title = models.CharField('Banner sarlavhasi', max_length=255)
+    subtitle = models.CharField('Banner sub sarlavhasi', max_length=255)
+    text = models.CharField('Banner Text', max_length=255)
+    image = models.ImageField('Banner rasmi', upload_to='banner/%y/%m/%d/')
+    
     def __str__(self):
         return f"{self.title}"
